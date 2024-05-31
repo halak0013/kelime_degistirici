@@ -41,6 +41,9 @@ class ODTTextReplacer(Gtk.Window):
 
         box.pack_start(boxchck, True, True, 0)
 
+        self.chck_overwrite = Gtk.CheckButton(label="üzerine yazılsın mı", tooltip_text="Eğer bu özelliği seçerseniz yeni bir klasör oluşturmadan\nnvar olan dosyaların üzerine yazar")
+        box.pack_start(self.chck_overwrite, True, True, 0)
+
         self.old_text_entry = Gtk.Entry()
         self.old_text_entry.set_placeholder_text("Değişecek metin")
         box.pack_start(self.old_text_entry, True, True, 0)
@@ -109,8 +112,11 @@ class ODTTextReplacer(Gtk.Window):
 
 
     def odt_dosyalrini_isle(self, dosya_yolu, arancak_metin, new_text):
-        output_yolu = os.path.join(dosya_yolu, 'yeni_ciktilar')
-        os.makedirs(output_yolu, exist_ok=True)
+        if not self.chck_overwrite.get_active():
+            output_yolu = os.path.join(dosya_yolu, 'yeni_ciktilar')
+            os.makedirs(output_yolu, exist_ok=True)
+        else:    
+            output_yolu = dosya_yolu
 
         for dosya_ismi in os.listdir(dosya_yolu):
             if (self.chck_odt.get_active() and dosya_ismi.endswith('.odt')) or \
