@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Kelime değiştirici
+GenericName=Kelime değiştirici
+Comment=farklı formatlarda belgelerdeki keli öbeklerini değiştirici
+Exec=python3 ~/.local/bin/kelime_degistirici.py
+Icon=filename-composer-amarok
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
+Keywords=kelime;değiştir;
